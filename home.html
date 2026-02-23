@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jannah</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="popup" id="popup">
+    <img src="assets/bouquet.png" alt="Bouquet">
+    <h2>Flowers for You, Jannah</h2>
+    <p>I figured if I can’t hand you flowers in person yet… 
+    <br/> then I will send them digitally for now.</p>
+    <button class="yes" onclick="closePopup()">Open My Message</button>
+</div>
+
+<div class="card" id="mainCard">
+    <h1>Hi Jannah Arnaiz</h1>
+    <p>
+        I don’t know the perfect first line.  
+        I dont know the perfect way to start a conversation.
+        But I do know that,
+        <a style="font-weight: 500;">"Sometimes the bravest move is simply trying."</a>
+    </p>
+
+    <p style="font-weight: bolder;">Would you let me take you out for coffee sometime?</p>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesClicked()">Yes</button>
+        <button class="no" id="noBtn" onmouseover="moveNo()">No</button>
+    </div>
+</div>
+
+<script>
+window.onload = function(){
+    document.getElementById("popup").classList.add("show");
+};
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+function yesClicked(){
+    document.getElementById("mainCard").innerHTML = `
+        <h1>Hope this makes you smile, Jannah</h1>
+        <p> I know this is a bit sudden, but I just had to ask.
+         I hope we can get to know each other better, and maybe share some laughs over coffee sometime. 
+        </p>
+        <p>You handle the frontend, I’ve got the backend, perfect combination.
+        </p>
+        
+    `;
+}
+
+function moveNo(){
+    const btn = document.getElementById("noBtn");
+    btn.style.position="absolute";
+    btn.style.left = Math.random()*300 - 150 + "px";
+    btn.style.top = Math.random()*150 - 75 + "px";
+}
+
+const flowerImages = [
+    "assets/flower1.png",
+    "assets/flower2.png",
+    "assets/flower3.png"
+];
+
+function createFlower(){
+    const flower = document.createElement("img");
+    flower.src = flowerImages[Math.floor(Math.random()*flowerImages.length)];
+    flower.classList.add("flower");
+    flower.style.left = Math.random()*100 + "vw";
+    flower.style.animationDuration = (10 + Math.random()*5) + "s";
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{flower.remove();},15000);
+}
+
+setInterval(createFlower,900);
+</script>
+
+</body>
+</html>
